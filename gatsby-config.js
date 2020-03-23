@@ -28,11 +28,9 @@ module.exports = {
       },
     },
 
-
     {
       resolve: "gatsby-source-wordpress",
       options: {
-
         baseUrl: "gatsby-wp-data.test",
         protocol: "http",
         restApiRoutePrefix: "wp-json",
@@ -76,19 +74,20 @@ module.exports = {
           "**/tags",
           "**/taxonomies",
           "**/users",
+          "**/menus",
         ],
         // Blacklisted routes using glob patterns
-        excludedRoutes: ["**/posts/1456"],
+        excludedRoutes: [],
         keepMediaSizes: false,
         // use a custom normalizer which is applied after the built-in ones.
-        normalizer: function ({ entities }) {
+        normalizer: function({ entities }) {
           return entities
         },
         normalizers: normalizers => [
           ...normalizers,
           {
             name: "nameOfTheFunction",
-            normalizer: function ({ entities }) {
+            normalizer: function({ entities }) {
               // manipulate entities here
               return entities
             },
